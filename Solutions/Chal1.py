@@ -7,16 +7,15 @@ translates = []
 # Functions
 def decode(line):
     #Replaces the weirdo strings with numbers
-    line = line.replace("one", "1")
-    line = line.replace("two", "2")
-    line = line.replace("three", "3")
-    line = line.replace("four", "4")
-    line = line.replace("five", "5")
-    line = line.replace("six", "6")
-    line = line.replace("seven", "7")
-    line = line.replace("eight", "8")
-    line = line.replace("nine", "9")
-    line = line.replace("ten", "10")
+    line = line.replace("one", "o1e")
+    line = line.replace("two", "t2o")
+    line = line.replace("three", "t3e")
+    line = line.replace("four", "f4r")
+    line = line.replace("five", "f5e")
+    line = line.replace("six", "s6x")
+    line = line.replace("seven", "s7n")
+    line = line.replace("eight", "e8t")
+    line = line.replace("nine", "n9e")
     return line
 
 def clean(line):
@@ -35,7 +34,7 @@ def calib(line):
 # Visual Things
 for x in range (1, 1001):
     strng = calis.readline()
-    # strng = decode(strng)
+    strng = decode(strng)
     strng = clean(strng)
     strng = calib(strng)
     print("From line " + str(x) + " we get " + strng)
@@ -46,5 +45,6 @@ for x in translates:
     total = total + int(x)
 
 print (total)
+
 
 calis.close()
