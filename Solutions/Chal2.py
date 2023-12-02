@@ -17,57 +17,69 @@ def simplify(line):
 
 def interpret(line):
     piece = ""
+    red = 0
+    green = 0
+    blue = 0
+    power = 0
     # print(line)
+
+    line = line.replace(line[0:2], "", 1)
+    line = line.replace(";", "")
     
     for x in line:
+        # print(line)
         if(x.isdigit()):
             piece = piece + x
             line = line.replace(line[0:1], "", 1)
-            # print(line)
-        elif(x == ":"):
-            identi = int(piece)
-            line = line.replace(piece + ":", "", 1)
-            piece = ""
+            # print("Piece is " + piece)
         elif(x == "g"):
-            if (int(piece) > 13):
-                identi = 0
-                break
+            if (int(piece) > int(green)):
+                green = int(piece)
+                piece = ""
             else:
                 piece = ""
-                line = line.replace(line[0:1], "", 1)
-                # print(line)
                 continue
+            
+            # print("green is " + str(green))
+            line = line.replace("g", "", 1)
         elif(x == "b"):
-            if (int(piece) > 14):
-                identi = 0
-                break
+            if (int(piece) > int(blue)):
+                blue = int(piece)
+                piece = ""
             else:
                 piece = ""
-                line = line.replace(line[0:1], "", 1)
-                # print(line)
                 continue
+            
+            # print("blue is " + str(blue))
+            line = line.replace("b", "", 1)
         elif(x == "r"):
-            if (int(piece) > 12):
-                identi = 0
-                break
+            if (int(piece) > int(red)):
+                red = int(piece)
+                piece = ""
             else:
                 piece = ""
-                line = line.replace(line[0:1], "", 1)
-                # print(line)
                 continue
-    return identi
+            
+            # print("red is " + str(red))
+            line = line.replace("r", "", 1)
+    print("Green, blue, and red respectively are " + str(green), str(blue), str(red))
+    power = red * green * blue
+    return power
 
 # Visual Running
-for x in range (1, 101):
+for x in range(1, 101):
     cubes = games.readline()
     cubes = simplify(cubes)
     cubes = interpret(cubes)
     print("From line " + str(x) + " we get " + str(cubes))
+    # print("From the first line, we got " + str(cubes))
     possibilities.append(cubes)
+
 
 for x in possibilities:
     total = total + int(x)
 
 print(total)
+
 
 games.close()
