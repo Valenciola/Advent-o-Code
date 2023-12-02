@@ -27,4 +27,20 @@ Some friends of mine had a lot to say about part 2, but we got it in the end! Th
 
 Now I wonder what's in store for tomorrow's puzzle...
 
+---
+
+### Day 2 - 12/2/23
+
+**The story thus far:** I have been launched from a trebuchet (sort of against my will, but what an experience), and I landed on a chilly sky island that was also nearly snowless! The place was called *Snow Island* (which is ironic at the moment). An Elf met me where I landed to debrief me on what's going on, but it's a bit of a walk to where I need to be, so he asked if I'd like to play a game in the meantime.
+
+Today's challenge was about this game, which involved of bag of red, green, and blue cubes. The Elf would grab a handful of cubes and show them to me, which I would then record. After a few rounds (if you think of 100 as a few), the Elf asked me a few questions about my data. So here came the string parsing and the stats! I used Python today.
+
+***PART 1:***
+The goal was to see which of the games in my sample input would be possible if there were only 12 red cubes, 13 green cubes, and 14 blue cubes. Then, I was to add up all of the game IDs that were possible, and input the sum as the answer. For this solution, I decided to simplify each line by changing the big words (removing the "Game" and turning green into "g" and the like), and then I parsed through the simplified string using a loop that would read each character and make decisions based on that. If any value for the g's, b's, or r's went over the limit, the loop would break and would return 0 instead of the game's ID. It took a bit of time for me to figure it out (mainly because I didn't break this one into as many steps), but I got it!
+
+***PART 2:***
+Part two was only slightly more difficult. This time, the Elf wanted to know what the fewest number of cubes needed to be for each color, for each game. So, I needed to find the highest number of cubes in each game, out of all of the drawings. That one was a little bit more challenging because my string parsing kept erasing the character markers I was using to separate the cube colors. I think future me will read the code and understand... though maybe near-future me should spend some time commenting the code. Anyway, I was *very* happy to complete today's challenge!
+
+My friends didn't break a sweat over this challenge, but they *also* waited until midnight so they could start working on the puzzle. So when we first looked at it, most of us had a heart attack. And I went to sleep. And the rest of them puzzled it out. So now, I'm tied for 6th place in the private leaderboard. Tomorrow's Sunday, meaning I'm definitely not getting any speed points. But another day means another puzzle--and who knows what's in store!
+
 **Happy Holidays!** ❄️
