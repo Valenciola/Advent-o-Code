@@ -6,7 +6,7 @@ This is my first year doing it, so why not make it memorable?
 (*Although, I feel like the magnitude of the code bugs themselves will be memorable enough...*)
 **CHRISTMAS CODING!**
 
----
+[**TODAY'S EXPERIENCE: Day 2**]("https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md#day-2---12223")
 
 ### Day 1 - 12/1/23
 
@@ -41,7 +41,7 @@ The goal was to see which of the games in my sample input would be possible if t
 ***PART 2:***
 Part two was only slightly more difficult. This time, the Elf wanted to know what the fewest number of cubes needed to be for each color, for each game. So, I needed to find the highest number of cubes in each game, out of all of the drawings. That one was a little bit more challenging because my string parsing kept erasing the character markers I was using to separate the cube colors. I think future me will read the code and understand... though maybe near-future me should spend some time commenting the code. Anyway, I was *very* happy to complete today's challenge!
 
-My friends didn't break a sweat over this challenge, but they *also* waited until midnight so they could start working on the puzzle. So when we first looked at it, most of us had a heart attack. And I went to sleep. And the rest of them puzzled it out. So now, I'm tied for 6th place in the private leaderboard. 
+My friends didn't break a sweat over this challenge, but they *also* waited until midnight so they could start working on the puzzle. So when we first looked at it, most of us had a heart attack. And I went to sleep. And the rest of them puzzled it out. So now, I'm tied for 6th place in the private leaderboard.
 
 Tomorrow's Sunday, meaning I'm definitely not getting any speed points. But another day means another puzzle--and who knows what's in store!
 
