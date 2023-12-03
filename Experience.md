@@ -6,7 +6,7 @@ This is my first year doing it, so why not make it memorable?
 (*Although, I feel like the magnitude of the code bugs themselves will be memorable enough...*)
 **CHRISTMAS CODING!**
 
-[**TODAY'S EXPERIENCE: Day 2**]("https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md#day-2---12223")
+[**TODAY'S EXPERIENCE**](https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md#day-2---12223)
 
 ### Day 1 - 12/1/23
 
