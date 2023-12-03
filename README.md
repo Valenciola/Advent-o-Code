@@ -14,6 +14,8 @@ You can also check out the full document, [**Experience.md**](https://github.com
 
 Instead of separating my repository by day, I separated them into inputs and solutions. You can see today's solution [**here**](https://github.com/Valenciola/Advent-o-Code/blob/main/Solutions/Chal2.py). My programs aren't very well-commented so far, but feel free to take a look anyway and see if you can see what I'm doing.
 
+I also didn't quite separate my solutions into part 1 and part 2, but you can go into the history and see it marked there.
+
 If you're interested in trying out a code puzzle of your own, go and check out [**Advent of Code**](https://adventofcode.com/2023)! Who knows, you might really enjoy yourself in the end 😉
 
 **Happy Holidays!** ❄️
