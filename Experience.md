@@ -8,6 +8,8 @@ This is my first year doing it, so why not make it memorable?
 
 [**TODAY'S EXPERIENCE**](https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md#day-2---12223)
 
+---
+
 ### Day 1 - 12/1/23
 
 Today's challenge was to translate a bunch of random lines with numbers in them into **calibration numbers**.
