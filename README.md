@@ -10,7 +10,7 @@ Since it's my first time doing this, I decided to write down my experience for e
 
 You can also check out the full document, [**Experience.md**](https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md).
 
-## Exploring the Repo
+## Exploring the Repo 🚀
 
 Instead of separating my repository by day, I separated them into inputs and solutions. You can see today's solution [**here**](https://github.com/Valenciola/Advent-o-Code/blob/main/Solutions/Chal2.py). My programs aren't very well-commented so far, but feel free to take a look anyway and see if you can see what I'm doing.
 
