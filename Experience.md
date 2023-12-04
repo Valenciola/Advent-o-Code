@@ -47,4 +47,20 @@ My friends didn't break a sweat over this challenge, but they *also* waited unti
 
 Tomorrow's Sunday, meaning I'm definitely not getting any speed points. But another day means another puzzle--and who knows what's in store!
 
+---
+
+### Day 3 - 12/4/23
+
+**The story thus far:** I've gotten up to a gondola lift, which the Elf tells me will take me up to the water source. This is as far as the elf can take me, so I'm on my own again... or so I thought. I get into a gondola, but it's not moving. It turns out that it's broken. I notice the engineer Elf there, and he tells me that the gondolas aren't working because there's a gear missing. I offer to help, and he explains that if I can add up the part numbers of the engine schematic, we can find which one is missing. Today's code is in Python once again.
+
+***PART 1:***
+The first step was to read through the schematic to find the part numbers. In the input, each number that touches a symbol (even diagonally) is a part number. I started pretty late on this day's challenge, and it took me *quite* a while to piece it together. It was about 11 at night when I solved the first part. I decided to store the entire file's content into a single string variable, because I figured that would help me with positioning (because there were 140 characters in each line). This one took multiple steps: I searched by symbol and had it see if there were any numbers around the symbol. Then, any number was investigated to read the entire number in between the .'s. Then I had to record each of these numbers and add it together. I don't exactly remember everything that went into it, but the code is pretty readable-ish, so I could probably go back and figure it out.
+
+***PART 2:***
+The next day, I addressed part 2. This one's goal was to find each **gear ratio** (a.k.a, any symbol that is connected to more than one number, and the product of those numbers). This one didn't take much because my original code was already separating numbers by symbols. The trick was to include a separater in the array for the part numbers (a '|'), and then have it read. The first time I did it, I got a bug because I didn't realize that single numbers weren't gears. In that case, I ended up just setting the total product to zero so it didn't add anything. I was getting an answer that was too high at first, but once I figured it out (it took some testing in Bye.py with the example code), I got the gold star! **YAY!**
+
+My friends had some mixed feelings about this challenge, but they all found ways to solve it (and they're all *vastly* different solutions). A lot of us are starting to think that AoC is starting to get overly complicated, but it's only day three, so maybe we might find some relief in future challenges. I'm trying to remain optimistic.
+
+Now I gotta try Day 4's challenge and hope I can still get some good points, even though I did D3P2 in the same day! (and no I'm not looking to see what's in store this time. I might not like it)
+
 **Happy Holidays!** ❄️
