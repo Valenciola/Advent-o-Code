@@ -6,13 +6,13 @@ This is my first year participating in this code puzzle challenge, so I'm gonna 
 
 ## The Experience 🎀
 
-Since it's my first time doing this, I decided to write down my experience for each day I complete a puzzle. You can read about today's experience [**here**](https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md#day-2---12223).
+Since it's my first time doing this, I decided to write down my experience for each day I complete a puzzle. You can read about today's experience [**here**](https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md#day-3---12423).
 
 You can also check out the full document, [**Experience.md**](https://github.com/Valenciola/Advent-o-Code/blob/main/Experience.md).
 
 ## Exploring the Repo 🚀
 
-Instead of separating my repository by day, I separated them into inputs and solutions. You can see today's solution [**here**](https://github.com/Valenciola/Advent-o-Code/blob/main/Solutions/Chal2.py). My programs aren't very well-commented so far, but feel free to take a look anyway and see if you can see what I'm doing.
+Instead of separating my repository by day, I separated them into inputs and solutions. You can see today's solution [**here**](https://github.com/Valenciola/Advent-o-Code/blob/main/Solutions/Chal3.py). My programs aren't very well-commented so far, but feel free to take a look anyway and see if you can see what I'm doing.
 
 I also didn't quite separate my solutions into part 1 and part 2, but you can go into the history and see it marked there.
 
