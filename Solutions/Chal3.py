@@ -4,6 +4,7 @@ symbols = ["*", "&", "@", "%", "+", "=", "#", "/", "$", "-"]
 lopp = ""
 mechanism = open("Inputs/Chal3.txt", "r")
 total = 0
+ratios = []
 # Keep in mind that each line is 140 chars long and we got 140 lines
 
 for x in mechanism:
@@ -81,6 +82,30 @@ def extract(boundary, skips):
     # print(cat)
     return cat
 
+def trail(ratiolas):
+    total = 1
+    # print(ratiolas)
+    for x in range(0, len(ratiolas)):
+        if (ratiolas[x].isdigit()):
+            if (ratiolas[x - 1] == '|' and ratiolas[x + 1] == '|'):
+                total = 0
+                pass
+            else:
+                print("Taking " + str(ratiolas[x]))
+                total = total * int(ratiolas[x])
+        else:
+            print("We got a gear with value " + str(total))
+            ratios.append(total)
+            total = 1
+
+'''
+def ration(numbers):
+    total = 1
+    for x in numbers:
+        total = total * int(numbers[x])
+    ratios.append(total)
+'''
+
 for x in range (0, len(lopp)):
     drawer = 0
     extracts = []
@@ -91,6 +116,7 @@ for x in range (0, len(lopp)):
     elif (lopp[x] in symbols):
         drawer = looksee(x)
         search(drawer)
+        gears.append("|")
         # print(gears)
 
 # Boring laundry stuff
@@ -101,12 +127,16 @@ for x in range(0, len(gears)):
     if ('\n' in gears[x]):
         gears[x] = gears[x].strip()
 
-print(gears)
+trail(gears)
+# print(ratios)
+# print(gears)
+
 
 # Totaling
 
-for x in range(0, len(gears)):
-    total = total + int(gears[x])
+for x in range(0, len(ratios)):
+    print(ratios[x])
+    total = total + int(ratios[x])
 
 
 print(total)
