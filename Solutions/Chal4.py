@@ -1,6 +1,10 @@
 cards = open("Inputs/Chal4.txt", "r")
 points = []
+files = []
 total = 0
+
+for x in range (1, 206):
+    files.append(1)
 
 # The colon in all cards is character 9 (or 8 for the code)
 # Numbers never occur twice in the same line (unless they're winning, of course)
@@ -59,6 +63,13 @@ def add(matches):
     # print("End value is " + str(value))
     return value
 
+def copy(runs, array, index):
+    repeats = array[index]
+    # print("We should go " + str(array[index]) + " times")
+    for w in range (1, repeats + 1):
+        for x in range (1, runs + 1):
+            array[index + x] = array[index + x] + 1
+
 # Visual
 for x in range (1, 206):
     card = cards.readline()
@@ -68,14 +79,14 @@ for x in range (1, 206):
     givens = []
 
     # Initial Read
-    for x in range (8, len(card)):
-        if (card[x] == '|'):
+    for y in range (8, len(card)):
+        if (card[y] == '|'):
             code = 1
         
         if (code == 1):
-            givens.append(card[x])
+            givens.append(card[y])
         else:
-            winnings.append(card[x])
+            winnings.append(card[y])
 
     # Polishing
     clean(winnings)
@@ -88,11 +99,11 @@ for x in range (1, 206):
     # Actual Work
     pairs = compare(winnings, givens)
     # print("We found " + str(pairs) + " matches.")
-    points.append(add(pairs))
+    copy(pairs, files, (x - 1))
+    # print(files)
 
-print(points)
-
-for x in points:
+print(files)
+for x in files:
     total = total + x
 
 print(total)
