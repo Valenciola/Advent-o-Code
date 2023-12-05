@@ -63,4 +63,20 @@ My friends had some mixed feelings about this challenge, but they all found ways
 
 Now I gotta try Day 4's challenge and hope I can still get some good points, even though I did D3P2 in the same day! (and no I'm not looking to see what's in store this time. I might not like it)
 
+---
+
+### Day 4 - 12/4/23
+
+**The story thus far:** I've ridden the gondola up to another island! This island is much warmer compared to the others. When I get there, I notice an Elf surrounded by a pile of cards. The Elf comes up to greet me and I ask about the water sources. The Elf doesn't know about that, though, and explains that the **gardener** would know more. Apparently I'm on **Island Island**, a floating island, and I need to get to the island where the gardener is, which is surrounded by water. Luckily, the Elf has a boat and will let me borrow it... *if* I help the Elf figure out what the cards, which are scratch cards, are worth. Each card contains a list of both winning numbers and given numbers, which are separated by a **vertical bar** ('|').
+
+***PART 1:***
+The Elf has figured out that each card might have some given numbers that match the winning numbers, and for each number that matches, the first number makes the card worth 1 point, and each following number doubles the value. So, given my card input, the goal was to find the value of all of the cards and add that up. So, the main thing was to interpret each line with the card input and separate it into the winning numbers and the given numbers. Then I stored them in separate arrays (both of which would be cleared in each repition). This involved reading and adding the characters to the winnings up until the vertical bar, and then add the rest to the givens. Then I had to clean up each array and turn the characters into full numbers (and then clean it up again to get rid of the extra empty strings). After I had my numbers, I had to compare the winning numbers to the given numbers and see where there were matches (since each line didn't repeat numbers). Then I could correctly parse each amount of matches (so the first is 1, and the others double the amount), and store the values in another array. Then I added up everything in the array and we were all good!
+
+***PART 2:***
+In part 2, it turns out that directions were on the back of each card. It turns out that for each winning number, you get copies of more scratch cards. Basically, if I had four winning numbers on the first scratch card, then I get one copy each of the next four cards (2, 3, 4, 5). With this in mind, I could reuse my code to find the matches, which would be the winning numbers. Now, instead of parsing for values, I needed to add these copies. This was simple, since I could use a for loop and add one to each number in the array (which represents the number of copies for each card). However, it turns out that I had to factor in the copies too. So, the solution was for me to repeat the same array extension multiple times to account for each copy, and then I would total that up!
+
+My friends didn't think this challenge was too hard, and most of them got it. In my opinion, this one was pretty straightforward and simple to think about!
+
+So now, we're about to be a fifth of the way through Advent of Code. Hopefully the challenges don't become too difficult, or I might have to start sacrificing stars... which I'm very determined not to do! Let's also try to complete daily challenges within the same day...
+
 **Happy Holidays!** ❄️
