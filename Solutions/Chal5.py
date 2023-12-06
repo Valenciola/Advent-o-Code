@@ -1,6 +1,8 @@
 almanac = open("Inputs/Chal5.txt", "r")
 sight = almanac.readline()
 seeds = [] # Initial seeds
+nums = []
+rans = []
 locations = []
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 soil, fertilizer, water, light, temperature, humidity, location = [], [], [], [], [], [], []
@@ -76,8 +78,6 @@ def transform(seed, list):
     ran = 0
     indice = 0
     final = seed
-    sourcerun = []
-    destirun = []
     found = 0
     # print(final)
     # print(seed)
@@ -102,7 +102,7 @@ def transform(seed, list):
         # Check for range
         if not (source > seed):
             # print("Not greater!")
-            if ((seed - source) < ran and (seed - source) >= 0):
+            if (seed >= source and seed <= (source + ran)):
                 # print("Within range!")
                 found = 1
                 break
@@ -115,6 +115,7 @@ def transform(seed, list):
     # print(destination, source, ran)
 
     if (found == 1):
+        '''
         for x in range (0, ran):
             sourcerun.append(source + x)
             destirun.append(destination + x)
@@ -122,6 +123,10 @@ def transform(seed, list):
         while (sourcerun[indice] != seed):
             indice = indice + 1
         final = destirun[indice]
+        '''
+        dome = seed - source
+        final = destination + dome
+
     else:
         pass
     
@@ -130,21 +135,37 @@ def transform(seed, list):
 # Actual running
 # Starting
 readseeds()
+
+for x in range(0, len(seeds)):
+    if (x % 2 == 0):
+        nums.append(seeds[x])
+    else:
+        rans.append(seeds[x])
+
+print(nums)
+print(rans)
+
+lowest = nums[0]
 readtostart()
 
-# Running seeds
-for x in range(0, len(seeds)):
-    sow = seeds[x]
 
-    sow = transform(sow, soil)
-    sow = transform(sow, fertilizer)
-    sow = transform(sow, water)
-    sow = transform(sow, light)
-    sow = transform(sow, temperature)
-    sow = transform(sow, humidity)
-    sow = transform(sow, location)
-    
-    locations.append(sow)
+# Running seeds
+for x in range(0, len(nums)):
+    # print(x)
+    for y in range(0, rans[x]):
+        sow = nums[x] + y
+        # print(sow)
+
+        sow = transform(sow, soil)
+        sow = transform(sow, fertilizer)
+        sow = transform(sow, water)
+        sow = transform(sow, light)
+        sow = transform(sow, temperature)
+        sow = transform(sow, humidity)
+        sow = transform(sow, location)
+        # print(sow)
+        locations.append(sow)
+
 
 # Calculating the lowest
 lowest = locations[x]
@@ -154,7 +175,7 @@ for x in range(0, len(locations)):
 
 # print(seeds)
 # print(soil, fertilizer, water, light, temperature, humidity, location)
-print(locations)
-print(lowest)
+print("Lowest is " + str(lowest))
+
 
 almanac.close()
