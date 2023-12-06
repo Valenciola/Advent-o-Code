@@ -5,7 +5,7 @@ times = []
 tobeat = []
 ways = []
 cat = ""
-total = 1
+total = 0
 
 def getways(time, record):
     # -x^2 + tx - d
@@ -34,33 +34,32 @@ for x in line:
     if(x.isdigit()):
         cat = cat + x
     else:
-        if not (cat == ''):
-            cat = int(cat)
-            times.append(cat)
-            cat = ""
-        else:
-            pass
+        pass
+times.append(int(cat))
+cat = ""
 line = post.readline() + ' '
 for x in line:
     if(x.isdigit()):
         cat = cat + x
     else:
-        if not (cat == ''):
-            cat = int(cat)
-            tobeat.append(cat)
-            cat = ""
-        else:
-            continue
+        pass
+tobeat.append(int(cat))
 
+'''
 for x in range (0, len(times)):
     ways.append(getways(times[x], tobeat[x]))
+'''
 
 print(times)
 print(tobeat)
+total = getways(times[0], tobeat[0])
+
+'''
 print(ways)
 
 for x in ways:
     total = total * x
+'''
 
 print(total)
 
