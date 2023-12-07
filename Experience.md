@@ -79,4 +79,16 @@ My friends didn't think this challenge was too hard, and most of them got it. In
 
 So now, we're about to be a fifth of the way through Advent of Code. Hopefully the challenges don't become too difficult, or I might have to start sacrificing stars... which I'm very determined not to do! Let's also try to complete daily challenges within the same day...
 
+---
+
+### Day 5 - 12/5/23
+
+**The story thus far:** I took the boat over to the island within **Island Island** to meet with the gardener there. I ask him what he knows about the fact that **Snow Island** isn't receiving any water. It turns out that the water had been turned off because there was no sand to filter it with, but as the Elf thinks through this, he realizes that he's had the water off for *way* too long. This is because he was busy trying to make sure everyone has food, so he forgot to check why the island had stopped receiving sand. So he asks *me* to go check it out by taking a ferry to the place where I can go investigate the lack of sand. Just ask quickly, he gives me another task: read the latest **Island Island almanac**, which lists the seeds that need to be planted and contain information for how to convert the seed numbers to their attributes (like temperature and location).
+
+***PART 1:***
+Given my puzzle input, my job was to find the lowest location number out of all of the seeds I was given. Now, let me just say this: the numbers were *ridiculous*. So big and crazy... But luckily, after some time, I managed to make one function that would convert a number to a different number based on which list was inputted as a parameter. It took a lot of true/false and if-statements and everything... But at some point, I finally got it. I don't exactly know how I got up to that point, but I did...
+
+***PART 2:***
+...Is technically not done. I apparently made a program that brute-forces all of the seeds. See, it turns out that the seed input was a starting seed number and then a range, meaning that I have about a billion seeds to process. And I haven't yet gotten an answer because the compilers I've tried so far keep running out of memory. So now I gotta find some way to use less memory... Maybe I'll try to simplify things into one variable, rather than storing things. I've got some ideas for how to do it... But, for now, we're on a silver star.
+
 **Happy Holidays!** ❄️
