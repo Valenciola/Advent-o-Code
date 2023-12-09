@@ -6,7 +6,8 @@ rans = []
 locations = []
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 soil, fertilizer, water, light, temperature, humidity, location = [], [], [], [], [], [], []
-lowest = 0
+cot = 0
+lowest = None
 
 # Setup Functions
 def scan(array, line):
@@ -151,31 +152,57 @@ readtostart()
 
 # Running seeds
 for x in range(0, len(nums)):
-    # print(x)
-    for y in range(0, rans[x]):
-        sow = nums[x] + y
-        # print(sow)
+    sow = nums[x] + rans[x]
+    sow = transform(sow, soil)
+    sow = transform(sow, fertilizer)
+    sow = transform(sow, water)
+    sow = transform(sow, light)
+    sow = transform(sow, temperature)
+    sow = transform(sow, humidity)
+    sow = transform(sow, location)
+    # print(sow)
 
-        sow = transform(sow, soil)
-        sow = transform(sow, fertilizer)
-        sow = transform(sow, water)
-        sow = transform(sow, light)
-        sow = transform(sow, temperature)
-        sow = transform(sow, humidity)
-        sow = transform(sow, location)
-        # print(sow)
-        locations.append(sow)
+    locations.append(sow)
 
+# Calculating the range end
 
-# Calculating the lowest
 lowest = locations[x]
 for x in range(0, len(locations)):
     if (lowest > locations[x]):
         lowest = locations[x]
+        cot = x
 
 # print(seeds)
 # print(soil, fertilizer, water, light, temperature, humidity, location)
-print("Lowest is " + str(lowest))
+# print(locations)
+print(lowest, cot)
+locations.clear()
+# print("b " + str(rans[cot]))
+
+for x in range(200000000, rans[cot] + 1):
+    print("x: " + str(x))
+    sow = nums[cot] + x
+    sow = transform(sow, soil)
+    sow = transform(sow, fertilizer)
+    sow = transform(sow, water)
+    sow = transform(sow, light)
+    sow = transform(sow, temperature)
+    sow = transform(sow, humidity)
+    sow = transform(sow, location)
+    print(sow)
+    '''
+    if (len(str(sow)) <= len(str(68589803))):
+        print("Found???")
+        break
+    else:
+        pass
+    '''
+
+    # locations.append(sow)
+
+print(locations)
+
+# print("Lowest is " + str(lowest))
 
 
 almanac.close()
