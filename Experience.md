@@ -91,4 +91,8 @@ Given my puzzle input, my job was to find the lowest location number out of all 
 ***PART 2:***
 ...Is technically not done. I apparently made a program that brute-forces all of the seeds. See, it turns out that the seed input was a starting seed number and then a range, meaning that I have about a billion seeds to process. And I haven't yet gotten an answer because the compilers I've tried so far keep running out of memory. So now I gotta find some way to use less memory... Maybe I'll try to simplify things into one variable, rather than storing things. I've got some ideas for how to do it... But, for now, we're on a silver star.
 
+---
+
+**Updates are currently suspended until I get back up to speed with AoC**
+
 **Happy Holidays!** ❄️
