@@ -28,6 +28,7 @@ bids.append(cat)
 def determine(card):
     # Read in terms of [A, K, Q, J, T, 9, 8, 7, 6, 5, 4, 3, 2]
     # print(card)
+    # J is arms[3]
     mode = 0
     arms = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for x in card:
@@ -59,22 +60,22 @@ def determine(card):
         elif (x == '2'):
             arms[12] = arms[12] + 1
     # print(arms)
-    if (arms.count(5) == 1):
+    if ((arms.count(5) == 1) or (arms[3] == 4 and arms.count(1) == 1) or (arms[3] == 1 and arms.count(4) == 1)):
         # Five of a kind
         mode = 7
-    elif (arms.count(4) == 1 and arms.count(1) == 1):
+    elif ((arms.count(4) == 1 and arms.count(1) == 1) or (arms[3] == 3 and arms.count(1) == 2) or (arms.count(3) == 1 and arms[3] == 1 and arms.count(1) == 2) or (arms.count(2) == 2 and arms[3] == 2 and arms.count(1) == 1)):
         # Four of a kind
         mode = 6
-    elif (arms.count(3) == 1 and arms.count(2) == 1):
+    elif ((arms.count(3) == 1 and arms.count(2) == 1) or (arms.count(2) == 2 and arms[3] == 1 and arms.count(1) == 1)):
         # Full house
         mode = 5
-    elif (arms.count(3) == 1 and arms.count(1) == 2):
+    elif ((arms.count(3) == 1 and arms.count(1) == 2) or (arms[3] == 2 and arms.count(1) == 3) or (arms.count(2) == 1 and arms[3] == 1 and arms.count(1) == 3)):
         # Three of a kind
         mode = 4
-    elif (arms.count(2) == 2 and arms.count(1) == 1):
+    elif ((arms.count(2) == 2 and arms.count(1) == 1) or (arms.count(2) == 1 and arms[3] == 1 and arms.count(1) == 3)):
         # Two pair
         mode = 3
-    elif (arms.count(2) == 1 and arms.count(1) == 3):
+    elif ((arms.count(2) == 1 and arms.count(1) == 3) or (arms[3] == 1 and arms.count(1) == 5)):
         # One pair
         mode = 2
     else:
@@ -154,7 +155,7 @@ def compare(array, term, cards):
         # print(counter)
         array[x] = array[x] + counter
         counter = counter + 1
-
+    
     # print(decodes)
 
 def decode(card):
@@ -164,25 +165,25 @@ def decode(card):
     for x in card:
         # print(buff)
         if (x == '2'):
-            value = value + (1 * buff)
-        elif (x == '3'):
             value = value + (2 * buff)
-        elif (x == '4'):
+        elif (x == '3'):
             value = value + (3 * buff)
-        elif (x == '5'):
+        elif (x == '4'):
             value = value + (4 * buff)
-        elif (x == '6'):
+        elif (x == '5'):
             value = value + (5 * buff)
-        elif (x == '7'):
+        elif (x == '6'):
             value = value + (6 * buff)
-        elif (x == '8'):
+        elif (x == '7'):
             value = value + (7 * buff)
-        elif (x == '9'):
+        elif (x == '8'):
             value = value + (8 * buff)
-        elif (x == 'T'):
+        elif (x == '9'):
             value = value + (9 * buff)
-        elif (x == 'J'):
+        elif (x == 'T'):
             value = value + (10 * buff)
+        elif (x == 'J'):
+            value = value + (0 * buff)
         elif (x == 'Q'):
             value = value + (11 * buff)
         elif (x == 'K'):
@@ -200,6 +201,7 @@ for x in range(0, len(cards)):
     # Initial rank the cards by type
     # print(x + 1, determine(cards[x]))
     ranks[x] = determine(cards[x])
+    # print(cards[x], bids[x], "M" , ranks[x], " ")
 
 adjust(ranks)
 # compare(ranks, 1, cards)
@@ -210,7 +212,9 @@ for x in range(1, 1001):
 # print(ranks)
 
 for x in range(0, 1000):
-    print(cards[x], bids[x], "R" , ranks[x], " ")
+    # print(cards[x], bids[x], "R" , ranks[x], " ")
     total = total + (ranks[x] * bids[x])
 
 print(total)
+
+card.close()
