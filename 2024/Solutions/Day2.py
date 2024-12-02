@@ -46,3 +46,5 @@ for x in range (0, len(reconsiders)):
             continue
 
 print("We see " + str(safes) + " safe levels now...")
+
+levels.close()
