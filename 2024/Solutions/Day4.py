@@ -16,54 +16,39 @@ def separate():
     grid.append(chars)
 
 def findx(x, y):
-    # x is horizontal position, y is horizontal position, 'XMAS' is a four-letter word
-    states = [1, 1, 1, 1, 1, 1, 1, 1]
-    xmases = 0
+    # x is horizontal position, y is horizontal position, 'MAS' has four X possibilities?
     goahead = 0
-    direction = [[1, 0], [-1, 0], [0, 1], [0, -1], [-1, 1], [-1, -1], [1, 1], [1, -1]]
-    '''
-    Determine what combinations are possible so we can just ignore other ones
-    # Forwards horizontal (0)
-    # backwards horizontal (1)
-    # forwards vertical (2)
-    # backwards vertical (3)
-    # forwards diagonal left (4)
-    # backwards diagonal left (5)
-    # forwards diagonal right (6)
-    # backwards diagonal right (7)
-    '''
-    if ((x + 3) > hori - 1):
-        states[0] = 0
-        states[6] = 0
-        states[7] = 0
-    if ((x - 3) < 0):
-        states[1] = 0
-        states[4] = 0
-        states[5] = 0
-    if ((y + 3) > verti - 1):
-        states[2] = 0
-        states[4] = 0
-        states[6] = 0
-    if ((y - 3) < 0):
-        states[3] = 0
-        states[5] = 0
-        states[7] = 0
-    # print(states)
+    tops = []
 
-    for i in range (0, 8):
-        if (states[i]):
-            xlook = direction[i][0]
-            ylook = direction[i][1]
-            goahead = (grid[y + ylook][x + xlook] == 'M') and (grid[y + (ylook * 2)][x + (xlook * 2)] == 'A') and (grid[y + (ylook * 3)][x + (xlook * 3)] == 'S')
-            goahead = int(goahead)
-            if (goahead):
-                # print("Caught on instance " + str(i))
-                xmases += 1
+    # We can't an X if there's not enough space in the top to bottom or left to right
+    if ((x + 1 > hori - 1) or (x - 1 < 0) or (y + 1 > verti - 1) or (y - 1 < 0)):
+        # print("Won't fit")
+        return 0
+    else:
+        if (grid[y - 1][x - 1] == 'M' or grid[y - 1][x - 1] == 'S'):
+            tops.append(grid[y - 1][x - 1])
         else:
-            continue
-    
-    print("Collected " + str(xmases))
-    return xmases
+            #print ("1 is bad")
+            return 0
+        
+        if (grid[y - 1][x + 1] == 'M' or grid[y - 1][x + 1] == 'S'):
+            tops.append(grid[y - 1][x + 1])
+        else:
+            #print ("2 is bad")
+            return 0
+
+        if (grid[y + 1][x + 1] != tops[0] and grid[y + 1][x + 1] != 'X' and grid[y + 1][x + 1] != 'A'):
+            goahead = 1
+        else:
+            #print ("3 is bad")
+            return 0
+        if (grid[y + 1][x - 1] != tops[1] and grid[y + 1][x - 1] != 'X' and grid[y + 1][x - 1] != 'A'):
+            goahead = 1
+        else:
+            #print ("4 is bad")
+            return 0
+        #print(grid[y - 1][x - 1], grid[y + 1][x + 1], grid[y][x], grid[y - 1][x + 1], grid[y + 1][x - 1])
+        return 1
 
 # Run
 for x in range(0, 140):
@@ -75,11 +60,9 @@ hori = len(grid[0])
 
 for y in range (0, len(grid)):
     for x in range (0, len(grid[0])):
-        # print(grid[y][x])
-        if (grid[y][x] != 'X'):
+        if (grid[y][x] != 'A'):
             continue
         else:
-            # print("This is an X")
             xmas = xmas + findx(x, y)
 
 print("We found " + str(xmas) + " instances")
