@@ -3,7 +3,6 @@ grid = []
 heads = []
 scores = 0
 forks = []
-checked = []
 
 def lookahead(x, y):
     global hori,verti
@@ -36,7 +35,7 @@ def seek(x, y):
     focus = int(grid[y][x])
     look = lookahead(x, y)
     search = focus + 1
-    global scores, forks, checked
+    global scores, forks
     temp = 0
 
     #print(x, y)
@@ -44,9 +43,7 @@ def seek(x, y):
     #print(look)
 
     if (focus == 9):
-        if (not ([x, y] in checked)):
-            scores += 1
-            checked.append([x, y])
+        scores += 1
         return
 
     if (search in look): # Basically, this is how I check for forks in the road
@@ -59,17 +56,13 @@ def seek(x, y):
                 #print(temp)
                 match(temp):
                     case 0:
-                        if (not ([x, y - 1] in forks)):
-                            forks.append([x, y - 1])
+                        forks.append([x, y - 1])
                     case 1:
-                        if (not ([x + 1, y] in forks)):
-                            forks.append([x + 1, y])
+                        forks.append([x + 1, y])
                     case 2:
-                        if (not ([x, y + 1] in forks)):
-                            forks.append([x, y + 1])
+                        forks.append([x, y + 1])
                     case 3:
-                        if (not ([x - 1, y] in forks)):
-                            forks.append([x - 1, y])
+                        forks.append([x - 1, y])
         match(look.index(search)):
             case 0:
                 y = y - 1
@@ -106,13 +99,12 @@ for x in range(0, len(grid)):
     print(grid[x])
 #print(heads)
 
-for x in range(0, len(heads)):
-    seek(heads[x][0], heads[x][1])
+for u in range(0, len(heads)):
+    seek(heads[u][0], heads[u][1])
     for i in forks:
         #print(i)
         seek(i[0], i[1])
     forks.clear()
-    checked.clear()
 print("The score? It's " + str(scores))
 
 topo.close()
