@@ -1,14 +1,18 @@
 calinote = open("2024/Inputs/D7.txt", "r")
 tests = []
 givens = []
-ops = ['+', '*']
-binary = []
+ops = ['+', '*', '.']
+binary = [] # It's not really binary anymore but I didn't wanna change the name
 possibles = []
 cal = 0
 
 def bincombs(n):
-    for i in range(1 << n):
-        binarystr = format(i, '0' + str(n) + 'b')
+    for i in range(3**n):
+        binarystr = ""
+        num = i
+        for _ in range(n):
+            binarystr = str(num % 3) + binarystr
+            num //= 3 # Turns out that we don't need to typecast because // does integer division
         binary.append(binarystr)
 
 def understand(string):
@@ -20,15 +24,23 @@ def understand(string):
     else:
         thought = ""
         opps = 0
+        temp = []
         for t in range(0, len(string)):
             if (opps == 2):
                 break
             elif (not string[t].isdigit()):
                 opps += 1
+                temp.append(string[t])
             thought = thought + string[t]
         if (not thought[len(thought) - 1].isdigit()):
             thought = thought[:-1]
-        rep = str(eval(thought))
+        
+        if (temp[0] == '.'):
+            temp = thought.split('.')
+            rep = str(temp[0]) + str(temp[1])
+        else:
+            rep = str(eval(thought))
+
         string = string.replace(thought, rep, 1)
         return understand(string)
 
@@ -46,9 +58,10 @@ for x in range(0, 850):
 
 #print(tests)
 #print(givens)
+print(len(tests))
 
 for x in range(0, len(givens)):
-    #print(givens[x])
+    print(x, givens[x])
     poss = len(givens[x]) - 1
     #print(poss)
     binary = []
@@ -70,6 +83,7 @@ for x in range(0, len(givens)):
         else:
             continue
 
+print("\nAre you ready?")
 print(possibles)
 
 for i in range(0, len(possibles)):
