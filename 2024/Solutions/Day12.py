@@ -74,15 +74,94 @@ def getarea(region):
     return len(region)
 
 def getperi(region, letter):
-    # Get the perimeter with the help of a hint from George
+    # Part 2 is a bit... yeah?
     peri = 0
-    for re in region:
-        focus = scan(re[0], re[1])
-        for n in focus:
-            if (n != letter):
-                peri += 1
-            else:
-                continue
+    looks = []
+    tops = []
+    rights = []
+    bottoms = []
+    lefts = []
+    okays = []
+
+    for x in region:
+        looks.append(scan(x[0], x[1]))
+    
+    # Scan for ends on every side
+    for x in range(0, len(region)):
+        if (looks[x][0] != letter):
+            tops.append(region[x])
+        if (looks[x][1] != letter):
+            rights.append(region[x])
+        if (looks[x][2] != letter):
+            bottoms.append(region[x])
+        if (looks[x][3] != letter):
+            lefts.append(region[x])
+    
+    # Get sides dependant on x or y level (how do I explain this in human language?)
+    tops = sorted(tops, key=lambda x: (x[1], x[0]))
+    cy = None
+    px = None
+    for top in tops:
+        x, y, = top
+        if y != cy:
+            okays.append([x, y])
+            cy = y
+            px = x
+        else:
+            if (px == None) or (x > px + 1):
+                okays.append([x, y])
+            px = x
+    peri += len(okays)
+    okays.clear()
+
+    rights = sorted(rights, key=lambda x: (x[0], x[1]))
+    cx = None
+    py = None
+    for right in rights:
+        x, y, = right
+        if x != cx:
+            okays.append([x, y])
+            cx = x
+            py = y
+        else:
+            if (py == None) or (y > py + 1):
+                okays.append([x, y])
+            py = y
+    peri += len(okays)
+    okays.clear()
+
+    bottoms = sorted(bottoms, key=lambda x: (x[1], x[0]))
+    cy = None
+    px = None
+    for bottom in bottoms:
+        x, y, = bottom
+        if y != cy:
+            okays.append([x, y])
+            cy = y
+            px = x
+        else:
+            if (px == None) or (x > px + 1):
+                okays.append([x, y])
+            px = x
+    peri += len(okays)
+    okays.clear()
+
+    lefts = sorted(lefts, key=lambda x: (x[0], x[1]))
+    cx = None
+    py = None
+    for left in lefts:
+        x, y, = left
+        if x != cx:
+            okays.append([x, y])
+            cx = x
+            py = y
+        else:
+            if (py == None) or (y > py + 1):
+                okays.append([x, y])
+            py = y
+    peri += len(okays)
+    okays.clear()
+
     return peri
 
 # Find the regions
@@ -103,6 +182,7 @@ print("The total cost will be", str(cost))
 
 '''
 # Random stuff I print to check
+print("\nTest items\n")
 print("The grid")
 for x in range(0, len(grid)):
     print(grid[x])
