@@ -49,13 +49,16 @@ def solve(index):
     buttonb = bbs[index]
     prize = prizes[index]
 
+    prize[0] = prize[0] + 10000000000000
+    prize[1] = prize[1] + 10000000000000
+
     #print(buttona, buttonb, prize)
 
     b = (buttona[1] * prize[0] - buttona[0] * prize[1]) / (buttona[1] * buttonb[0] - buttona[0] * buttonb[1])
     a = (prize[0] - buttonb[0] * b) / buttona[0]
 
     # Is this even a valid solution??? (Yeah we gotta tighten security because we got some float imposters hanging around)
-    if (a >= 0 and b >= 0 and (math.floor(a) == a) and (math.floor(b) == b) and a <= 100 and b <= 100):
+    if (a >= 0 and b >= 0 and (math.floor(a) == a) and (math.floor(b) == b)):
         return [int(a), int(b)]
     else:
         return [0, 0]
