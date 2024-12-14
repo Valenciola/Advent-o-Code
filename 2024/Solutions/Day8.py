@@ -29,17 +29,32 @@ def findantinodes(locations):
     pairs = list(itertools.combinations(locations, 2)) # Trying an itertool for the first time; this will form the pairs
     for pair in pairs:
         slope = [pair[1][0] - pair[0][0], + pair[1][1] - pair[0][1]]
+        rate = 1
 
-        antinode1 = [pair[1][0] + slope[0], pair[1][1] + slope[1]]
-        antinode2 = [pair[0][0] - slope[0], pair[0][1] - slope[1]]
+        x = pair[1][0] + slope[0]
+        y = pair[1][1] + slope[1]
+        antinode = [x, y]
+        while (not(x < 0) and not(x > hori - 1) and not(y < 0) and not(y > verti - 1)):
+            if (not([x, y] in antinodes)):
+                antinodes.append([x, y])
+            rate += 1
+            x = pair[1][0] + (slope[0] * rate)
+            y = pair[1][1] + (slope[1] * rate)
+        
+        rate = 1
+        x = pair[0][0] - slope[0]
+        y = pair[0][1] - slope[1]
+        antinode = [x, y]
+        while (not(x < 0) and not(x > hori - 1) and not(y < 0) and not(y > verti - 1)):
+            if (not([x, y] in antinodes)):
+                antinodes.append([x, y])
+            rate += 1
+            x = pair[0][0] - (slope[0] * rate)
+            y = pair[0][1] - (slope[1] * rate)
 
-        if (not(antinode1[0] < 0) and not(antinode1[0] > hori - 1) and not(antinode1[1] < 0) and not(antinode1[1] > verti - 1) and not(antinode1 in antinodes)):
-            antinodes.append(antinode1)
-        if (not(antinode2[0] < 0) and not(antinode2[0] > hori - 1) and not(antinode2[1] < 0) and not(antinode2[1] > verti - 1) and not(antinode2 in antinodes)):
-            antinodes.append(antinode2)
+        #antinode1 = [pair[1][0] + slope[0], pair[1][1] + slope[1]]
+        #antinode2 = [pair[0][0] - slope[0], pair[0][1] - slope[1]]
 
-
-        #print(antinode1, antinode2)
         #print(pair[0], pair[1], slope)
     return
 
@@ -58,8 +73,14 @@ for x in range(0, len(antennatypes)):
 for x in range(0, len(locations)):
     findantinodes(locations[x])
 
-print(antinodes)
-print("In the end, we got", len(antinodes), "antinodes")
+for x in range(0, len(locations)):
+    for i in locations[x]:
+        if (not (i in antinodes)):
+            antinodes.append(i)
+
+
+#print(antinodes)
+print("In the end, we got", (len(antinodes)), "antinodes")
 
 ''' # Test stuff that might break my console if I try to print it with puzzle input haha
 for x in antinodes:
