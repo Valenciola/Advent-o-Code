@@ -103,8 +103,16 @@ while (flag):
 
 print(march)
 
+f = open("2024/Box/tree.txt", "a")
+
 # Test stuff
 for x in grid:
     print(x)
 
+for y in grid:
+    for x in range(0, len(y)):
+        f.write(str(y[x]))
+    f.write('\n')
+
 robots.close()
+f.close()
