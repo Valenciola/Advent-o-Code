@@ -4,7 +4,6 @@ robots = open("2024/Inputs/D14.txt", "r")
 positions = []
 velocities = []
 grid = []
-quadrants = [0, 0, 0, 0]
 
 # Boundaries/Dimensions (change for input)
 hori = 101
@@ -67,6 +66,15 @@ def move():
             grid[y][x] = grid[y][x] + 1
         
     return
+
+def checkover(grid):
+    for y in range(len(grid)):
+        for x in range(len(grid[0])):
+            if (grid[y][x] == '.' or grid[y][x] == 1):
+                continue
+            else:
+                return True
+    return False
         
 for _ in range(500): # Read and sort the list (change range for input)
     robot = robots.readline()
@@ -85,47 +93,15 @@ grid = creategrid(hori, verti)
 plotpos(positions)
 locations = copy.deepcopy(positions)
 
-for _ in range(100):
+
+flag = True
+march = 0
+while (flag):
+    march += 1
     move()
+    flag = checkover(grid)
 
-quadx = hori // 2
-quady = verti // 2
-
-# Quadrant 1
-for y in range(0, quady):
-    for x in range(0, quadx):
-        if (str(grid[y][x]).isdigit()):
-            quadrants[0] = quadrants[0] + grid[y][x]
-        else:
-            continue
-
-# Quadrant 2
-for y in range(0, quady):
-    for x in range(quadx + 1, len(grid[0])):
-        if (str(grid[y][x]).isdigit()):
-            quadrants[1] = quadrants[1] + grid[y][x]
-        else:
-            continue
-
-# Quadrant 3
-for y in range(quady + 1, len(grid)):
-    for x in range(0, quadx):
-        if (str(grid[y][x]).isdigit()):
-            quadrants[2] = quadrants[2] + grid[y][x]
-        else:
-            continue
-
-# Quadrant 4
-for y in range(quady + 1, len(grid)):
-    for x in range(quadx + 1, len(grid[0])):
-        if (str(grid[y][x]).isdigit()):
-            quadrants[3] = quadrants[3] + grid[y][x]
-        else:
-            continue
-
-#print(quadrants) 
-total = quadrants[0] * quadrants[1] * quadrants[2] * quadrants[3]
-print("The safety factor is", total)
+print(march)
 
 # Test stuff
 for x in grid:
