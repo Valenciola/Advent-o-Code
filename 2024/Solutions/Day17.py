@@ -1,3 +1,5 @@
+import copy
+
 comp = open("2024/Inputs/D17.txt")
 
 def run(instruction, operand):
@@ -35,6 +37,7 @@ def run(instruction, operand):
             regb = mathhelp
         case 5: #out
             mathhelp = combo % 8
+            #print(mathhelp, bin(mathhelp))
             outputs.append(mathhelp)
         case 6: #bdv
             mathhelp = rega / (2**combo)
@@ -44,6 +47,9 @@ def run(instruction, operand):
             regc = int(mathhelp)
     return
 
+def afunc(a):
+    return ((((a % 8) ^ 1) ^ 4) ^ (a // 2**((a % 8) ^ 1))) % 8
+
 # Sort stuff
 file = comp.read().splitlines()
 rega = int(file[0].replace("Register A: ", ""))
@@ -52,6 +58,23 @@ regc = int(file[2].replace("Register C: ", ""))
 program = (file[4].replace("Program: ", "")).split(",")
 for x in range(0, len(program)):
     program[x] = int(program[x])
+
+print(program)
+
+possibles = [0]
+for c in reversed(program):
+    found = []
+    for up in possibles:
+        for i in range(8):
+            attempt = (up << 3) + i
+            out = afunc(attempt)
+            if out == c:
+                found.append(attempt)
+    possibles = copy.deepcopy(found)
+
+#print(possibles)
+#print(min(possibles))
+rega = min(possibles)
 
 # Other necessary variables
 pointer = 0
@@ -74,7 +97,7 @@ construct = construct[:-1]
 print("Reg A", rega)
 print("Reg B", regb)
 print("Reg C", regc)
-print(outputs)
-print(construct)
+print(outputs, len(outputs))
+#print(construct)
 
 comp.close()
