@@ -1,10 +1,11 @@
 import copy, collections
 bytemap = open("2024/Inputs/D18.txt", "r")
 
-bytecount = 1024 # The number of falling bytes (change for applications)
+#bytecount = 1024 # The number of falling bytes (change for applications)
 falling = set()
 square = 70 # The grid is a square; basically dimensions (change for applications)
 grid = []
+endgoal = (square, square)
 
 def bestpath(walls: set, target: tuple):
     queue = collections.deque() # So now I'm learning how to use a queue... AoC's really making me learn a lot
@@ -44,8 +45,9 @@ def bestpath(walls: set, target: tuple):
 
     return shortest, path
 
+finale = 0
 # Add necessary bytes and whatnot
-for i in range(0, bytecount):
+for i in range(0, 3450):
     helper = bytemap.readline().strip() # I always need a helper variable to just handle menial tasks
     helper = helper.split(',')
     for j in range(0, len(helper)):
@@ -53,6 +55,15 @@ for i in range(0, bytecount):
     helper = (helper[0], helper[1])
     falling.add(helper)
 
+    finale, lepath = bestpath(falling, endgoal)
+    print("i:", i, helper, finale)
+    if (finale == float("inf")):
+        break
+
+    #test = input("")
+    
+
+'''
 helper = []
 for i in range(0, square + 1): # Create the empty grid
     for j in range(0, square + 1):
@@ -63,14 +74,13 @@ for i in range(0, square + 1): # Create the empty grid
 for i in falling: # Insert the falling bytes
     grid[i[1]][i[0]] = '#'
 
-finale, lepath = bestpath(falling, (70, 70))
-
-for i in lepath:
+for i in lepath: # Visualization for path marker
     grid[i[1]][i[0]] = 'O'
+'''
 
-for x in grid:
+'''
+for x in grid: # I just wanted to see it
     print(x)
-
-print(finale)
+'''
 
 bytemap.close()
