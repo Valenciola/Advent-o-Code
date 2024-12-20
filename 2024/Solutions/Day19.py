@@ -1,31 +1,16 @@
-towelpats = open("2024/example.txt")
+towelpats = open("2024/Inputs/D19.txt")
 
 # Functions
 
-def towelpower(design):
-    global patterns
-    if (len(design) == 0):
-        return 1
-    
-    top = -1
-        
-    for i in reversed(patterns):
-        if i in design:
-            #print(i)
-            if (patterns.index(i) > top and design[0] == i[0]):
-                top = patterns.index(i)
-        else:
-            continue
-    
-    if top > -1:
-        if (design[0] in patterns) and not (len(patterns[top]) > 1):
-            top = patterns.index(design[0])
+def towelpower(design, patterns, focus = ""):
+    #print(focus)
+    if not design.startswith(focus): # Kinda constructing the line up
+        return False
 
-        print(patterns[top])    
-        design = design.replace(patterns[top], "", 1)
-        return towelpower(design)
-    else:
-        return 0
+    if focus == design: # We got it
+        return True
+    
+    return any(towelpower(design, patterns, focus + swatch) for swatch in patterns) # If we get a true then we're set
 
 # Towls, patterns
 towels = towelpats.read().splitlines()
@@ -34,16 +19,20 @@ towels.pop(0)
 towels.pop(0)
 patterns.sort(key=len)
 
-print(patterns)
+#print(patterns)
 
 # Necessary variables
 possibles = []
 
 for i in towels:
-    print(i, towelpower(i))
-    if towelpower(i):
+    print(i)
+    if towelpower(i, patterns):
+        print("Good!\n")
         possibles.append(i)
+    else:
+        print("No good!\n")
+        #test = input("")
 
-print(len(possibles))
+print(len(possibles)) # why is this wrong (Initial 364, then 309, both are too low but why???)
 
 towelpats.close()
