@@ -1,5 +1,5 @@
-import collections
-reinmaze = open("2024/Inputs/D16.txt", "r")
+import collections, copy
+reinmaze = open("2024/example.txt", "r")
 
 def bestpath(walls: set, start: tuple, target: tuple):
     queue = collections.deque() # Taking from Day 18
@@ -73,5 +73,8 @@ for i in range(0, len(grid)):
 
 finale, path = bestpath(walls, start, end)
 print(finale)
+path = set(path)
+
+# Attempt to block every cell in the best paths to see how it recalculates
 
 reinmaze.close()
